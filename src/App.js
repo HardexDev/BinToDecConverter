@@ -36,18 +36,25 @@ function App() {
     if (decimal !== "") {
       let res = "";
       let n = parseInt(decimal);
-      for (let i = 31; i >= 0; i--) {
-        var k = n >> i;
-        if ((k & 1) > 0)
-            res += "1";
-        else
-            res += "0";
+
+      while (n > 0) {
+        res += n%2;
+        n = Math.trunc(n/2);
       }
+
+      res = reverseString(res);
 
       setBinary(res);
     } else {
       setBinary("");
     }
+  }
+
+  const reverseString = (str) => {
+    let splitString = str.split("");
+    let reverseArray = splitString.reverse();
+
+    return reverseArray.join("");
   }
     
 
